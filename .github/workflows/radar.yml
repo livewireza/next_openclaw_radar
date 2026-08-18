@@ -4,7 +4,7 @@ on:
   schedule:
     # 06:00 UTC = 08:00 Amsterdam during CEST
     # GitHub Actions cron is UTC; the workflow below also checks the
-    # Amsterdam timezone so the DST transition is handled safely.
+   
     - cron: "0 6 * * *"
 
   workflow_dispatch:

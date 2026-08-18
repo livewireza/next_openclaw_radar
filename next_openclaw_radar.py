@@ -394,6 +394,7 @@ def save(rows: list[dict[str, Any]], out_dir: Path) -> None:
 
     fields = [
         "radar_score", "signal", "name", "stars", "stars_recent", "forks",
+        "open_issues", "created", "updated",
         "hn_hits", "hn_points", "hn_comments", "fit", "recency",
         "language", "url", "description",
     ]

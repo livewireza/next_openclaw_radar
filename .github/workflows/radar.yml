@@ -36,28 +36,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Check Amsterdam time
-        id: time
-        run: |
-          python - <<'PY'
-          from datetime import datetime
-          from zoneinfo import ZoneInfo
-
-          now = datetime.now(ZoneInfo("Europe/Amsterdam"))
-          print("Amsterdam time:", now.isoformat())
-
-          # Only continue if it is the 08:00 hour.
-          # GitHub cron itself is UTC, so this protects against DST changes.
-          if now.hour != 8:
-              print("Not 08:00 Amsterdam; stopping.")
-              with open("$GITHUB_OUTPUT", "a") as f:
-                  f.write("run=false\n")
-          else:
-              print("Correct time; running radar.")
-              with open("$GITHUB_OUTPUT", "a") as f:
-                  f.write("run=true\n")
-          PY
-
+      
       - name: Run radar
         if: steps.time.outputs.run == 'true'
         env:

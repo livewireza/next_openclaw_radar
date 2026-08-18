@@ -39,7 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PRODUCT_HUNT_TOKEN: ${{ secrets.PRODUCT_HUNT_TOKEN }}
         run: |
-          python next_openclaw_radar.py \
+          python openclaw_radar.py \
             --limit 50 \
             --days 7 \
             --out openclaw-radar

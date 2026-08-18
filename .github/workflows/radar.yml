@@ -2,9 +2,6 @@ name: Next OpenClaw Radar
 
 on:
   schedule:
-    # 06:00 UTC = 08:00 Amsterdam during CEST
-    # GitHub Actions cron is UTC; the workflow below also checks the
-   
     - cron: "0 6 * * *"
 
   workflow_dispatch:
@@ -38,7 +35,6 @@ jobs:
 
       
       - name: Run radar
-        if: steps.time.outputs.run == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PRODUCT_HUNT_TOKEN: ${{ secrets.PRODUCT_HUNT_TOKEN }}
@@ -49,7 +45,6 @@ jobs:
             --out openclaw-radar
 
       - name: Commit radar results
-        if: steps.time.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
